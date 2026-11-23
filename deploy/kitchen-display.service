@@ -1,0 +1,28 @@
+# Installed by deploy/install.sh, which fills in @USER@ and @DIR@.
+[Unit]
+Description=Kitchen bus display (Ulanzi TC002)
+# The Pi has no battery clock: wait for NTP so the 07:00-09:00 window is right.
+Wants=network-online.target time-sync.target
+After=network-online.target time-sync.target
+
+[Service]
+User=@USER@
+WorkingDirectory=@DIR@
+EnvironmentFile=@DIR@/.env
+Environment=PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+StateDirectory=kitchen-display
+Environment=KITCHEN_DISPLAY_STATE=/var/lib/kitchen-display/control.json
+ExecStart=/usr/bin/python3 @DIR@/bus_display.py run
+# SIGTERM makes the program blank the clock before exiting.
+KillSignal=SIGTERM
+TimeoutStopSec=20
+Restart=always
+RestartSec=15
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+

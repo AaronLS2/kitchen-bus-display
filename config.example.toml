@@ -1,0 +1,39 @@
+# Copy to config.toml (git-ignored) and replace every PLACEHOLDER value.
+# Find WMATA stop codes on a stop's sign or at https://buseta.wmata.com/ ; GTFS stop_ids
+# come from stops.txt in WMATA's static bus GTFS (match the stop_code column).
+enabled = false           # set true once the device test and your schedule are confirmed
+timezone = "America/New_York"
+weekdays = [0, 1, 2, 3, 4] # Monday = 0
+start = "07:00"
+end = "09:00"             # exclusive; same-day windows only
+# school_year = ["2026-09-01", "2027-06-15"]  # optional first/last day; dark outside it
+skip_dates = []           # YYYY-MM-DD school holidays / days away, e.g. ["2026-11-26"]
+poll_seconds = 30
+page_seconds = 6
+
+[device]
+host = "192.168.1.50"     # PLACEHOLDER: your Ulanzi TC002's LAN IP (reserve it in your router)
+app_name = "school_bus"
+
+# One to four journeys; each gets its own page on the clock.
+[[journeys]]
+route = "X2"                        # PLACEHOLDER route (letters/digits the 3x5 font supports)
+stop_id = "1000001"                 # PLACEHOLDER: 7-digit WMATA stop code where you board
+destination_stop_id = "1000002"     # PLACEHOLDER: stop code where you get off
+gtfs_destination_stop_id = "1234"   # PLACEHOLDER: GTFS stop_id of that same destination stop
+direction_text = "East to Example"  # PLACEHOLDER: WMATA's exact DirectionText for your direction
+color = "#52C7D9"
+min_minutes = 2                     # hide buses closer than this (too late to reach the stop)
+
+[[journeys]]
+route = "S9"
+stop_id = "1000003"
+destination_stop_id = "1000004"
+gtfs_destination_stop_id = "5678"
+direction_text = "North to Example"
+color = "#E8AD55"
+min_minutes = 4
+
+# [phone]                 # optional phone control page
+# host = "0.0.0.0"
+# port = 8765

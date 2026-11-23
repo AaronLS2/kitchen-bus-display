@@ -1,0 +1,37 @@
+# Test fixture only: fictional stops and device, generic holidays. Not a real config.
+enabled = false
+timezone = "America/New_York"
+weekdays = [0, 1, 2, 3, 4]
+start = "07:00"
+end = "09:00"
+school_year = ["2026-08-24", "2027-06-16"]
+skip_dates = [
+  "2026-11-25", "2026-11-26", "2026-11-27",
+  "2026-12-21", "2026-12-22", "2026-12-23", "2026-12-24", "2026-12-25",
+  "2026-12-28", "2026-12-29", "2026-12-30", "2026-12-31", "2027-01-01",
+  "2027-03-22", "2027-03-23", "2027-03-24", "2027-03-25", "2027-03-26",
+]
+poll_seconds = 30
+page_seconds = 6
+
+[device]
+host = "192.168.1.50"
+app_name = "school_bus"
+
+[[journeys]]
+route = "D5X"
+stop_id = "1000101"
+destination_stop_id = "1000102"
+gtfs_destination_stop_id = "1102"
+direction_text = "North to Takoma"
+color = "#52C7D9"
+min_minutes = 2
+
+[[journeys]]
+route = "D6X"
+stop_id = "1000201"
+destination_stop_id = "1000202"
+gtfs_destination_stop_id = "1202"
+direction_text = "North to Silver Spring"
+color = "#E8AD55"
+min_minutes = 4
