@@ -94,3 +94,7 @@ python3 bus_display.py preview             # example pixel payloads, no network
 ```
 
 Passing tests do not mean a real bus feed or clock was reached.
+
+## License
+
+MIT. See [LICENSE](LICENSE). Not affiliated with WMATA or Ulanzi.
